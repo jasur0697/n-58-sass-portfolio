@@ -1,0 +1,198 @@
+
+@mixin flex-style {
+    display:flex;
+    align-items: center;
+  } 
+
+ @mixin margin-auto-sides {
+    margin-left: auto;
+    margin-right: auto;
+ }
+
+@mixin list-unstyle {
+    list-style-type: none;
+    padding:0;
+    margin: 0;
+} 
+
+@mixin  transform-style {
+    transition: all 0.2s ease-in-out 0s;
+    -moz-transition: all 0.2s ease-in-out 0s;
+    -webkit-transition: all 0.2s ease-in-out 0s;
+    -o-transition: all 0.2s ease-in-out 0s;
+}
+    
+$primary-color:#FFFFFF;
+$grayish-green:#5FB4A2;
+$text-style-public:"Public Sans" "Arial", sans-serif; ;
+
+
+html {
+    box-sizing: border-box;
+    height: 100%;
+  }
+  
+  .container {
+    width: 100%;
+    max-width: 1166px;
+    @include margin-auto-sides;
+    padding-left: 28px;
+    padding-right: 28px;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    font-family: "Public Sans" "Arial", sans-serif;
+    background-color: var(--white);
+  }
+  
+img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+  }
+
+
+  .site-header {
+    @include flex-style; 
+    padding-top: 32px;
+    padding-bottom: 24px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .site-header__logo-link {
+    text-decoration: none;
+    display: block;
+    flex-shrink: 0;
+    margin-right: auto;
+  }
+  
+
+  .site-header__button {
+    background-color: transparent;
+    border: none;
+    background-image: url(../images/hamburger-menu-icon.svg);
+    background-repeat: no-repeat;
+    height: 18px;
+    width: 16px;
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+
+  .site-header--open .site-header__button {
+    background-image: url(../images/close-button.svg);
+  }
+  
+  .site-header--open .site-nav {
+    display: block;
+  }
+  
+.site-nav {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    top: 100%;
+    right: 0;
+    padding: 40px 65px;
+    text-align: center;
+    height: 186px;
+    background-color: #33323D;
+    color: $primary-color;
+    overflow: hidden;
+
+    &__list {
+        @include list-unstyle;
+    }
+
+    &__link {
+        text-decoration: none;
+        font-family: $text-style-public;
+        font-size: 12px;
+        line-height: 14px;
+        text-align: center;
+        letter-spacing: 2px;
+        color: $primary-color;
+        text-transform: uppercase;
+        @include transform-style;
+    
+    &:hover {
+        color: $grayish-green;
+        }
+      }
+  }
+
+  .site-nav__item:not(:last-child) {
+    margin-bottom: 32px;
+  }
+
+
+  
+@media only screen and (min-width: 689px) {
+
+    .container {
+      padding-left: 40px;
+      padding-right: 40px;
+    }
+  
+    .site-header {
+      padding-top: 40px;
+      padding-bottom: 52px;
+      @include flex-style;
+      justify-content: space-between;
+  
+    }
+  
+    .site-header__button {
+      display: none;
+      background-color: transparent;
+    }
+  
+    .site-nav {
+      display: block;
+      z-index: 1;
+      top: 0;
+      margin: 0;
+      background-color: transparent;
+      background-color: none;
+      text-align: end;
+      height: auto;
+      width: auto;
+    }
+  
+    .site-nav__list {
+      font-family: "Barlow";
+      @include flex-style;
+      justify-content: center;
+      padding: 5px 0;
+      background-color: $primary-color;
+    }
+  
+    .site-nav__link {
+      font-family:$text-style-public;
+      font-size: 12px;
+      line-height: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #33323D;
+    }
+  
+    .site-nav__item:not(:last-child) {
+      margin-bottom: 0;
+      margin-right: 43px;
+    }
+}
